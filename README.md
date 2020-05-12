@@ -1,2 +1,2 @@
 # datasciencecoursera
-Coursera - Data Science Specialization (Yale)
+Coursera - Data Science Specialization (Johns Hopkins University)
