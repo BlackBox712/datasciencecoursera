@@ -19,7 +19,7 @@ class(x[[2]])
 #q9
 x <- 1:4
 y <- 2:3
-x+y
+x + y
 class(x+y)
 
 #q10
