@@ -12,8 +12,8 @@ y <- c(3, 2, 10)
 rbind(x, y)
 
 #q8
-x <- list(2, "a", "b", TRUE)
-x[[2]]
+x <- list(2, "a", "b", TRUE)  
+x[[2]]  
 class(x[[2]])
 
 #q9
