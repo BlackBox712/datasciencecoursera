@@ -8,6 +8,5 @@ pollutantmean <- function(directory, pollutant, id = 1:332)
         file_data <- rbind(file_data, read.csv(all_files[i]))
     }
     
-    pollutant_data <- file_data[pollutant]
-    class(pollutant_data)
+    mean(file_data[, pollutant], na.rm = TRUE)
 }
