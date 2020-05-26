@@ -3,7 +3,7 @@ complete <- function(directory, id = 1:332)
     all_files <- list.files(path = directory, full.names = TRUE)
     file_data <- data.frame()
     
-    nobs <- data.frame()
+    nobs <- data.frame(row.names = c("id", "nobbs"))
     
     for (i in id) 
     {
