@@ -1,0 +1,4 @@
+best <- function(state, outcome)
+{
+    
+}
