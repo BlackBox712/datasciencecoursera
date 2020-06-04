@@ -21,4 +21,4 @@ rankhospital("NY", "heart attack", 7)
 
 #q8
 r <- rankall("heart attack", 4)
-subset(r, state == "HI")
+as.character(subset(r, state == "HI")$hospital)
