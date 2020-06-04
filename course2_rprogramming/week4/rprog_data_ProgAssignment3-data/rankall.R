@@ -55,5 +55,6 @@ rankall <- function(outcome, num = "best")
     }
     
     rank_list <- rank_list[, 1:2]
+    names(rank_list) <- c("hospital", "state")
     rank_list
 }
