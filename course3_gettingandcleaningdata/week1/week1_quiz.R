@@ -27,5 +27,10 @@ zipcodes <- xpathSApply(rootNode, "//zipcode", xmlValue)
 sum(zipcodes == 21231)
 
 #q5
+library(data.table)
+
 fileUrl4 <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv"
 download.file(fileUrl4, destfile = "./q4_datafile.csv")
+
+DT <- fread("./q4_datafile.csv")
+DT[, mean(pwgtp15), by = SEX]
