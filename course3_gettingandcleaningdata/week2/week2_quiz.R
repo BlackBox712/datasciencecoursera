@@ -1,5 +1,6 @@
 #q1
 library(httr)
+library(jsonlite)
 
 oauth_endpoints("github")
 
@@ -11,6 +12,10 @@ github_token <- oauth2.0_token(oauth_endpoints("github"), myapp)
 gtoken <- config(token = github_token)
 req <- GET("https://api.github.com/users/jtleek/repos", gtoken)
 stop_for_status(req)
-content(req)
 
-req_data <- jsonlite::fromJSON(toJSON(content(req)))
+req_data <- fromJSON(toJSON(content(req)))
+names(req_data)
+subset(req_data, name == "datasharing", select = created_at)
+
+
+#q2
