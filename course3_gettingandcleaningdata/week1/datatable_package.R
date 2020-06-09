@@ -48,3 +48,11 @@ DT2 <- data.table(x = c('a', 'b', 'dt2'), z = 5:7)
 setkey(DT1, x)
 setkey(DT2, x)
 merge(DT1, DT2)
+
+big_df <- data.frame(x = rnorm(1E6), y = rnorm(1E6))
+file <- tempfile()
+write.table(big_df, file=file, row.names = FALSE, col.names = TRUE, sep = "\t", 
+            quote = FALSE)
+system.time(fread(file))
+
+system.time(read.table(file, header = TRUE, sep = "\t"))
