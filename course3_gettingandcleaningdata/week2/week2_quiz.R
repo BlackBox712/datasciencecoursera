@@ -26,3 +26,27 @@ download.file(fileUrl1, destfile = "./q2_datafile.csv")
 
 acs <- read.csv("./q2_datafile.csv")
 sqldf("select pwgtp1 from acs where AGEP < 50")
+
+
+#q3 (same dataset as q2)
+unique(acs$AGEP)
+sqldf("select distinct AGEP from acs")
+
+
+#q4
+library(XML)
+library(httr)
+
+fileUrl2 <- url("http://biostat.jhsph.edu/~jleek/contact.html")
+q4_data <- readLines(fileUrl2)
+close(fileUrl2)
+
+c(nchar(q4_data[10]), nchar(q4_data[20]), nchar(q4_data[30]), nchar(q4_data[100]))
+
+
+#q5
+fileUrl3 <- "https://d396qusza40orc.cloudfront.net/getdata%2Fwksst8110.for"
+
+q5_data <- read.fwf(fileUrl3, skip = 4, widths = c(12, 7, 4, 9, 4, 9, 4, 9, 4))
+
+sum(q5_data[, 4])
