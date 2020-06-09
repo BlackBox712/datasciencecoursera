@@ -13,9 +13,16 @@ gtoken <- config(token = github_token)
 req <- GET("https://api.github.com/users/jtleek/repos", gtoken)
 stop_for_status(req)
 
-req_data <- fromJSON(toJSON(content(req)))
-names(req_data)
-subset(req_data, name == "datasharing", select = created_at)
+q1_data <- fromJSON(toJSON(content(req)))
+names(q1_data)
+subset(q1_data, name == "datasharing", select = created_at)
 
 
 #q2
+library(sqldf)
+
+fileUrl1 <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv"
+download.file(fileUrl1, destfile = "./q2_datafile.csv")
+
+acs <- read.csv("./q2_datafile.csv")
+sqldf("select pwgtp1 from acs where AGEP < 50")
