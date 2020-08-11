@@ -8,8 +8,8 @@
 
 Description | File | Link
 --- | --- | ---
-Analysis R Script |  run_analysis.R |  [R Script Link](https://github.com/BlackBox712/datasciencecoursera/blob/master/course3_gettingandcleaningdata/project/run_analysis.R "run_analysis.R")
-Tidy Data Set |  Clean Data Set |  [Data Set Link](https://github.com/BlackBox712/datasciencecoursera/blob/master/course3_gettingandcleaningdata/project/tidyData.txt "tidyData.txt")
-Github Repo | Repo |  [Repo Link](https://github.com/BlackBox712/datasciencecoursera/tree/master/course3_gettingandcleaningdata/project "Click to go to Repo")
-Codebook | CodeBook.md |  [CodeBook Link](https://github.com/BlackBox712/datasciencecoursera/blob/master/course3_gettingandcleaningdata/project/CodeBook.md "CodeBook.md")
-README | ReadingItNow |  [README Link](https://github.com/BlackBox712/datasciencecoursera/blob/master/course3_gettingandcleaningdata/project/README.md "README.md")
+Analysis R Script |  run_analysis.R |  [Link](https://github.com/BlackBox712/datasciencecoursera/blob/master/course3_gettingandcleaningdata/project/run_analysis.R "run_analysis.R")
+Tidy Data Set |  Tidy Data Set |  [Link](https://github.com/BlackBox712/datasciencecoursera/blob/master/course3_gettingandcleaningdata/project/tidyData.txt "tidyData.txt")
+Github Repo | Repo |  [Link](https://github.com/BlackBox712/datasciencecoursera/tree/master/course3_gettingandcleaningdata/project "Click to go to Repo")
+Code Book | CodeBook.md |  [Link](https://github.com/BlackBox712/datasciencecoursera/blob/master/course3_gettingandcleaningdata/project/CodeBook.md "CodeBook.md")
+README | ReadingItNow |  [Link](https://github.com/BlackBox712/datasciencecoursera/blob/master/course3_gettingandcleaningdata/project/README.md "README.md")
