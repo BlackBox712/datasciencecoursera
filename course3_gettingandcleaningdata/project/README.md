@@ -12,4 +12,4 @@ Analysis R Script |  run_analysis.R |  [Link](https://github.com/BlackBox712/dat
 Tidy Data Set |  Tidy Data Set |  [Link](https://github.com/BlackBox712/datasciencecoursera/blob/master/course3_gettingandcleaningdata/project/tidyData.txt "tidyData.txt")
 Github Repo | Repo |  [Link](https://github.com/BlackBox712/datasciencecoursera/tree/master/course3_gettingandcleaningdata/project "Click to go to Repo")
 Code Book | CodeBook.md |  [Link](https://github.com/BlackBox712/datasciencecoursera/blob/master/course3_gettingandcleaningdata/project/CodeBook.md "CodeBook.md")
-README | ReadingItNow |  [Link](https://github.com/BlackBox712/datasciencecoursera/blob/master/course3_gettingandcleaningdata/project/README.md "README.md")
+README | README.md |  [Link](https://github.com/BlackBox712/datasciencecoursera/blob/master/course3_gettingandcleaningdata/project/README.md "README.md")
