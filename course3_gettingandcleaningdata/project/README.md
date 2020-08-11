@@ -6,7 +6,7 @@
 
 ## Links to all necessary files
 
-Goal | Item | Link to Item
+Description | Item | Link to Item
 --- | --- | ---
 Analysis R Script |  run_analysis.R |  [R Script Link](https://github.com/BlackBox712/datasciencecoursera/blob/master/course3_gettingandcleaningdata/project/run_analysis.R "run_analysis.R")
 Tidy Data Set |  Clean Data Set |  [Data Set Link](https://github.com/BlackBox712/datasciencecoursera/blob/master/course3_gettingandcleaningdata/project/tidyData.txt "tidyData.txt")
