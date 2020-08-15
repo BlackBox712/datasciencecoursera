@@ -37,7 +37,7 @@ plot <- function(names, totals, columns, main, colors){
 # Data Processing
 Read the original files and display column names.
 ```{r read_data, cache=TRUE}
-StormData <- read.csv("StormData.csv.bz2")
+StormData <- read.csv("repdata_data_StormData.csv.bz2")
 colnames(StormData)
 ```
 
