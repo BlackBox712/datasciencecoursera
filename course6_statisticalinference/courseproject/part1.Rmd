@@ -1,86 +1,63 @@
 ---
-title: "Statistical Inference Course Project - Part 1"
+title: "Exploring the Properties of the Exponential Distribution"
 author: "Sankalp Piratla"
 date: "August 22, 2020"
-output:
-  word_document: default
-  pdf_document: default
-  html_document:
-    df_print: paged
+output: pdf_document
 ---
-### Synopsis
-This is the first part of the course project for the statistical inference class. The goal of this project is performing some statistical inferential works such as, exploring inference by using simulation functionality of R to study the exponential distribution then comparing it with Central Limit Theorem.
 
-### Simulations
-#### Random sampling from the exponential distribution 
-The function <strong>rexp</strong> of R stat package creates random values belong to the exponential distribution; and it requires two input parameters, n - number of observations (n = 40) and rate (lambda = 0.2).  My simulation plan is running this function one thousand times, a fairly large number of trials, then collecting arithmetic mean of each trial.
+## Overview
+This report will use simulations to explore the properties of the exponential distribution, given by the formula $\lambda e^{-\lambda x}$. Both the theoretical mean and standard deviation for this distribution is $1/\lambda$ when the number of samples approaces infinity.
 
-```{R echo=TRUE, warning=FALSE,message=FALSE}
-library(knitr)
-library(ggplot2)
-## checking existence of a folder named "figure", if not then creating one to store plot figures
-figureDir <- 'figure'
-if (!file.exists(figureDir)){
-    dir.create(figureDir)
-} 
-## initializing variables
-set.seed(12345)
+## Process
+Here, I run 1000 simulations, each with 40 samples of an exponential distribution. The mean and variance of of those 40 samples will be calculated and compared to the theoretical estimates. Central limit theorem states that as the number in the sample increases or the number of simulations increase, the sample mean and variance should more accurately represent the theoretical estimate.
+
+First I set the seed so the data can be reproduced and set the control parameters, $\lambda$ is the rate parameter and $n$ is the number of samples in each simulation
+```{r}
+set.seed(1)
 lambda <- 0.2
-n <- 40
-numSim <- 1000
-## replicating random exponential sampling with sampling size n = 40, and repeat
-## nSim = 1000 times, and storing sample data in a matrix
-simMatrix <- replicate(numSim, rexp(n, rate = lambda))
-## getting average for each column of the matrix
-simColMeans <- colMeans(simMatrix)
- 
-## determining sample mean, sd and variance
-sampleMean <- mean(simColMeans)
-sampleSD <- sd(simColMeans)
-sampleVar <- sampleSD^2
-## calculating normal (theoritical) mean, normal standard deviation and variance
-normalMean <- 1/lambda
-normalSD <- 1/lambda/sqrt(40)
-normalVar <- normalSD^2
-## making a dataframe storing sample means in "x"" column; and the "y" column contains random values 
-## from the normal distribution with mean equals to the above calculated "normalMean" 
-## and standard deviation equals to "normalSD" 
-data <- data.frame(x = simColMeans, y = rnorm(1000, mean = normalMean, sd = normalSD))
+n  <- 40
+```
+Following, a for loop runs over 1000 simulations, for each simulation the mean and the varianceis computed and appended to an array. 
+```{r}
+mns = NULL
+vrs= NULL
+for (i in 1 : 1000) {
+        mySample <- rexp(n,lambda)
+        mns <- c(mns, mean(mySample))
+        vrs <- c(vrs, var(mySample))
+}
+```
+Next, I compute the average of the mean and the variance across all 1000 simulations
+
+```{r}
+myMean <- mean(mns)
+theoMean <- 1/lambda
+myVar <- mean(vrs)
+theoVar <- (1/lambda)^2
 ```
 
-#### Plotting histogram and PDF of sample and PDF of theoritical (normal) distribution
-```{r echo = TRUE, warning=FALSE, message=FALSE}
-p <- ggplot(data, aes(x = x))
-## adding histogram
-p <- p +  geom_histogram(aes(y = ..density..), fill = I("lightgreen"), col = I("lightgreen"), alpha = 0.75, binwidth = 0.1) 
-## adding density line of the sample distro
-p <- p + geom_density(aes(colour = "1")) + labs(x = "", y = "Density", title = "") 
-## adding density line of the normal distro
-p <- p +  geom_density(aes(x = y, colour = "2")) 
-## drawing sample mean
-p <- p + geom_vline(color = "blue", xintercept = 1/lambda)
-## drawing normal mean
-p <- p + geom_vline(color = "orange", xintercept = sampleMean)
-## labeling
-p <- p + labs(x = "", y = "Density", title = "Exponential Means Distribution Vs. Normal Distribution")
-## adding legend
-p <- p + scale_colour_manual(
-        values=c("1"="blue", "2"="orange"), 
-        name="", 
-        labels = c("Exponential", "Normal"))
+In these simulations the average of the sample means is `r myMean`, and the theoretical mean is `r theoMean`. The average of the sample variances is `r myVar`, and the theoretical variance is `r theoVar`. We can see that they are very close. 
+
+We can plot this as a histogram and show that it is approximately normal.
+```{r}
+hist(mns, breaks = 20, xlab = 'Mean', main = 'Histogram of Means')
+abline(v = theoMean, col = 3, lwd = 3)
+abline(v = myMean, col = 2, lwd = 3, lty = 2)
+legend(5.8,100, c('Theoretical Mean', 'Sample Mean')
+       , lwd = c(3,3), lty = c(1,2), col = c(3,2))
+curve(dnorm(x, mean=myMean, sd=sd(mns))*200, col="darkblue", lwd=2, add=TRUE)
 ```
-
-![](figure/Rplot01.png)
-
-### Observations
-```{r echo=TRUE}
-round(sampleMean, 4)
-round(normalMean, 4)
-round(sampleVar, 4)
-round(normalVar, 4)
+With the normal curve overlayed we can see that the mean resembles a normal distribution.
+We can do the same for the variance.
+```{r}
+hist(vrs, breaks = 14, xlab = 'Variance', main = 'Histogram of Variance')
+abline(v = theoVar, col = 3, lwd = 3)
+abline(v = myVar, col = 2, lwd = 3, lty = 2)
+legend(60, 200, c('Theoretical Variance', 'Sample Variance'),
+       lwd = c(3,3), lty = c(1,2), col = c(3,2))
+curve(dnorm(x, mean=myVar, sd=sd(vrs))*6000, col="darkblue", lwd=2, add=TRUE)
 ```
-1. The sample mean **`r sprintf("%.4f", sampleMean)`** (the vertical blue line in the plot) is very close to the theoretical (normal) mean **`r sprintf("%.4f", normalMean)`** (the vertical orange line in the plot), as predicted
-2. Similiarity, the variance of the sample is **`r sprintf("%.4f", sampleVar)`**, which is also approximately equal to the variance of the normal distribution **`r sprintf("%.4f", normalVar)`**
+The variance does not resemble a normal distribution like the mean. 
 
-### Conclusions
-From the above plot, the probability density functions of both sample and theoritical distribution almost overlap each other. Or we can say that the distribution of the sample means follows the normal distribution, as stated in the Central Limit Theorem.
+## Conclusion
+In conclusion I have shown various properties of the exponential distribution, including the mean and the variance. In accordance with the central limit theorem the mean of a sufficiently large sample size has a normal distribution across the thetheortical mean. This was shown with 1000 simulations, each with a sample size of 40 random variables.
